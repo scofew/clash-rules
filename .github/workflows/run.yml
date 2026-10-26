@@ -8,6 +8,8 @@ on:
       - master
     paths-ignore:
       - "**/README.md"
+permissions:
+  contents: write
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -32,7 +34,7 @@ jobs:
         shell: bash
 
       - name: Checkout the "hidden" branch
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           ref: hidden
 
@@ -110,7 +112,7 @@ jobs:
           cp *.txt ./publish/
 
       - name: Release and upload assets
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           name: ${{ env.RELEASE_NAME }}
           tag_name: ${{ env.TAG_NAME }}
